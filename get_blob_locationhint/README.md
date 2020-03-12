@@ -154,7 +154,7 @@ Follow instructions [here](https://aep-sdks.gitbook.io/docs/resources/building-m
 @end
 ```
 
-## 2 - Register for shared state
+## 3 - Register for shared state and handle it in the event listener
 
 As the Identity extension will always share its state early in the app lifecycle, the most reliable way is to listen for shared state changes.
 
