@@ -182,6 +182,8 @@ As we're only interested in Identity shared states, we'll need to filter out whi
 }
 ```
 
+From the `hear` method in the `MyExtensionListener`, we can get AAM blob and locationhint by processing the shared state.
+
 **Sample code from MyExtensionListener.m**
 
 ```objectivec
