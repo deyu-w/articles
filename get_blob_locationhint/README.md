@@ -1,6 +1,6 @@
 # How to get AAM blob and locationHint from the AEP SDK
 
-This document describes steps to retrieve AAM blob and locationHint values from the AEP SDK. 
+To be able to compose meaningful server-side Target delivery requests, we need to have correct values of Audience Manager blob and locationHint. This document describes steps to retrieve AAM blob and locationHint values from the AEP SDK. 
 
 With the AEP SDK, every service is wrapped into an extension, no matter it's provided by Adobe or built by clients. Extensions don't communicate with each other directly. Instead, the `ACPCore` component manages an `extension hub` to facilitate the communications. An extension can distpatch events to the `event hub` and can subscribe to events fired by other extensions. The values of AAM blob and locationHint are held by the Identity extension. To be able to get the values, we'll need to implement a custom extension and subscribe to certain event fired by the Identity extension. 
 
