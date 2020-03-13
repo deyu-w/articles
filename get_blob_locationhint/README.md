@@ -4,6 +4,8 @@ To be able to compose meaningful server-side Target delivery requests, we need t
 
 With the AEP SDK, every service is wrapped into an extension, no matter it's provided by Adobe or built by clients. Extensions don't communicate with each other directly. Instead, the `ACPCore` component manages an `extension hub` to facilitate the communications. An extension can distpatch events to the `event hub` and can subscribe to events fired by other extensions. The values of AAM blob and locationHint are held by the Identity extension. To be able to get the values, we'll need to implement a custom extension and subscribe to certain event fired by the Identity extension. 
 
+> The [Appendix](#appendix---how-to-get-aam-blob-and-locationhint-in-sdk4) below describes how to get the same values in SDK4.
+
 ## 1 - Build an extension  
 
 As the first step, we'll need to following instructions at [Building an extension](https://aep-sdks.gitbook.io/docs/resources/building-mobile-extensions/building-an-extension) to build a custom extension.
@@ -211,6 +213,24 @@ From the `hear` method in the `MyExtensionListener`, we can get AAM blob and loc
             
         }
     }
+```
+
+## Appendix - How to get AAM blob and locationHint in SDK4.
+
+
+**For iOS (assuming customer is not using App Groups):**
+```objectivec
+NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+NSString *locationHint = [defaults   objectForKey:@"ADBMOBILE_PERSISTED_MID_HINT"];
+NSString *locationBlob = [defaults objectForKey:@"ADBMOBILE_PERSISTED_MID_BLOB"];
+```
+
+**For Android:**
+```java
+// where "this" is an Activity
+SharedPreferences preferences = this.getSharedPreferences("APP_MEASUREMENT_CACHE", 0);
+String locationHint = preferences.getString("ADBMOBILE_PERSISTED_MID_HINT", null);
+String locationBlob = preferences.getString("ADBMOBILE_PERSISTED_MID_BLOB", null);
 ```
 
 ---
