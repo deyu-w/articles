@@ -5,8 +5,8 @@ The audit of a Launch property can be tedius if there are a lot of rules and dat
 ## 1 - Download Launch property to a local folder.
 
 The Engineering team provides two tools for downloading and syncing a Launch property to/from a local copy:
-* https://git.corp.adobe.com/marketingtech/reactor-downloader
-* https://git.corp.adobe.com/marketingtech/reactor-sync
+* https://github.com/adobe/reactor-downloader
+* https://github.com/adobe/reactor-sync
 
 In this step, we'll use the `reactor-downloader` to dump a Launch property to local folder. 
 
