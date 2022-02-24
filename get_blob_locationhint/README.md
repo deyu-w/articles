@@ -1,6 +1,10 @@
-# How to get AAM blob and locationHint from the AEP SDK
+# Enable Target Activities for Audience Manager Audiences via Target Server-side Delivery API on Mobile Apps
 
-To be able to compose meaningful server-side Target delivery requests, we need to have correct values of Audience Manager blob and locationHint. This document describes steps to retrieve AAM blob and locationHint values from the AEP SDK. 
+Nowadays, Adobe Target server-side implementation is more and more popular, as the experience can display in non-browser-based device. Because your server sits between the client and Target, this type of implementation is also ideal if you need greater control and security or have complex backend processes that you want to run on your server.
+
+However, when you implement Target server-side on a mobile app, you'll find that your Target activities can target audiences created on Target, but they can't target your audiences from Adudience Manager in real time, as you can't provide Target server-side API required information to enable the real-time integration.
+
+This guide enables you to compose meaningful server-side Target delivery requests with correct values of Audience Manager blob and locationHint. It describes steps to retrieve AAM blob and locationHint values from the AEP SDK and how to compose the Target server-side delivery API call with the information. 
 
 With the AEP SDK, every service is wrapped into an extension, no matter it's provided by Adobe or built by clients. Extensions don't communicate with each other directly. Instead, the `ACPCore` component manages an `extension hub` to facilitate the communications. An extension can distpatch events to the `event hub` and can subscribe to events fired by other extensions. The values of AAM blob and locationHint are held by the Identity extension. To be able to get the values, we'll need to implement a custom extension and subscribe to certain event fired by the Identity extension. 
 
