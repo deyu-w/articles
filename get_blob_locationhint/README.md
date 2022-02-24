@@ -1,6 +1,6 @@
 # Enable Target Activities for Audience Manager Audiences via Target Server-side Delivery API on Mobile Apps
 
-Nowadays, Adobe Target server-side implementation is more and more popular, as the experience can display in non-browser-based device. Because your server sits between the client and Target, this type of implementation is also ideal if you need greater control and security or have complex backend processes that you want to run on your server.
+Nowadays, Adobe Target server-side implementation is more and more popular, as the experience can display in non-browser-based device. Because your server sits between the client and Target, this type of implementation is also ideal if you need greater control and security or have complex backend processes that you want to run on your server. 
 
 However, when you implement Target server-side on a mobile app, you'll find that your Target activities can target audiences created on Target, but they can't target your audiences from Adudience Manager in real time, as you can't provide Target server-side API required information to enable the real-time integration.
 
@@ -217,6 +217,26 @@ From the `hear` method in the `MyExtensionListener`, we can get AAM blob and loc
             
         }
     }
+```
+
+## 4 - Compose Target server-side API requests
+
+At this point we have already retrieved Audience Manager blob and locationHint from the SDK. Once they are sent to your server side process, your server side process needs to compose the Target server-side delivery API request to provide the information to Target server, and Target server will query Audience Manager in real time for segment qualification. Details on Target server-side delivery API can be found (here)[https://developers.adobetarget.com/api/delivery-api/#section/Integration-with-Experience-Cloud/Adobe-Audience-Manager].
+```
+curl -X POST \
+  'https://demo.tt.omtrdc.net/rest/v1/delivery?client=demo&sessionId=d359234570e04f14e1faeeba02d6ab9914e' \
+  -H 'Content-Type: application/json' \
+  -H 'cache-control: no-cache' \
+  -d '{
+      ...
+      "experienceCloud": {
+        "audienceManager": {
+          "locationHint": 9,
+          "blob": "32fdghkjh34kj5h43"
+        }
+      },
+      ...
+    }'
 ```
 
 ## Appendix - How to get AAM blob and locationHint in SDK4.
